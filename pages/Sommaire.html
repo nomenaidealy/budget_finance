@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sommaire</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="container py-5">
+
+  <h1 class="text-center mb-5">Sommaire</h1>
+
+ 
+  <div id="sommaire"></div>
+
+  <script>
+
+    fetch('/api/sommaire')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('sommaire');
+
+        // Ajouter les chapitres
+        data.chapitres.forEach(chap => {
+          const chapDiv = document.createElement('div');
+          chapDiv.className = 'toc-item mt-3';
+          chapDiv.innerHTML = `<a href="${chap.lien || '#'}" class="chapter toc-title">${chap.titre}</a>
+                               <span class="toc-number">${chap.numero}</span>`;
+          container.appendChild(chapDiv);
+
+          // Ajouter les sous-chapitres
+          chap.sousChapitres.forEach(sub => {
+            const subDiv = document.createElement('div');
+            subDiv.className = 'toc-item ms-4';
+            subDiv.innerHTML = `<a href="${sub.lien || '#'}" class="subchapter toc-title">${sub.titre}</a>
+                                <span class="toc-number">${sub.numero}</span>`;
+            container.appendChild(subDiv);
+          });
+        });
+
+        // Ajouter les tableaux
+        const tableauxTitle = document.createElement('h2');
+        tableauxTitle.id = 'tableaux';
+        tableauxTitle.className = 'mt-5 chapter';
+        tableauxTitle.textContent = 'Liste des tableaux';
+        container.appendChild(tableauxTitle);
+
+        data.tableaux.forEach(tab => {
+          const tabDiv = document.createElement('div');
+          tabDiv.className = 'toc-item';
+          tabDiv.innerHTML = `<a href="${tab.lien || '#'}" class="chapter toc-title">${tab.titre}</a>
+                              <span class="toc-number">${tab.numero}</span>`;
+          container.appendChild(tabDiv);
+        });
+
+        // Ajouter les figures
+        const figuresTitle = document.createElement('h2');
+        figuresTitle.id = 'figures';
+        figuresTitle.className = 'mt-5 chapter';
+        figuresTitle.textContent = 'Liste des figures';
+        container.appendChild(figuresTitle);
+
+        data.figures.forEach(fig => {
+          const figDiv = document.createElement('div');
+          figDiv.className = 'toc-item subchapter';
+          figDiv.innerHTML = `<a href="${fig.lien || '#'}" class="subchapter toc-title">${fig.titre}</a>
+                              <span class="toc-number">${fig.numero}</span>`;
+          container.appendChild(figDiv);
+        });
+      })
+      .catch(error => console.error('Erreur lors du chargement du sommaire :', error));
+  </script>
+    <a href="../index.html">retour</a>
+</body>
+</html>

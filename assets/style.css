@@ -1,0 +1,292 @@
+/* ======================================== */
+/* FOND ET TYPOGRAPHIE GLOBALE */
+/* ======================================== */
+
+/* Fond avec image et overlay semi-transparent */
+body {
+  background: url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  font-size: 16px;
+  padding: 2rem;
+}
+
+/* Overlay semi-transparent pour lisibilité */
+body::before {
+  content: '';
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-color: rgba(118,224,229,0.4);
+  z-index: -1;
+}
+
+/* ======================================== */
+/* LOGO */
+/* ======================================== */
+.logo-container {
+  margin-bottom: 40px;
+}
+
+.logo {
+  max-width: 150px;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* ======================================== */
+/* CADRE BDC / Texte BDC */
+/* ======================================== */
+.bdc-frame {
+  width: 100%;
+  height: 250px;
+  background-color: rgba(159,231,235,0.8);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.bdc-text {
+  font-size: 8rem;
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  line-height: 250px;
+  text-align: center;
+}
+
+/* ======================================== */
+/* TITRES SECONDAIRES */
+/* ======================================== */
+.titles-container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.titles-container h5 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/* ======================================== */
+/* DB | Direction du budget (hover) */
+/* ======================================== */
+.db-direction h3 {
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.db-direction h3:hover {
+  color: #0a0a0a;
+  transform: translateX(-5px);
+}
+
+
+h1 {
+  color: #00796b; 
+  font-weight: bold;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+
+.chapter {
+  color: #009688;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.chapter:hover {
+  color: #00695c;
+  text-decoration: underline;
+}
+
+
+.subchapter {
+  color: #000;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.subchapter:hover {
+  color: #555;
+  text-decoration: underline;
+}
+
+
+.toc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.toc-item a {
+  position: relative;
+  flex-grow: 1;
+  text-decoration: none;
+  color: inherit;
+  padding-right: 1rem;
+}
+
+.toc-item a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-bottom: 1px dotted #000;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.toc-number {
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  background-color: #f0f8ff;
+  padding: 0 0.3rem;
+}
+
+
+.ms-4 { margin-left: 2rem !important; }
+.ms-5 { margin-left: 3rem !important; }
+
+.mt-3 { margin-top: 1.5rem !important; }
+.mt-2 { margin-top: 1rem !important; }
+.mb-1 { margin-bottom: 0.25rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+
+
+/* prespectives */
+
+/* Titres des tableaux */
+.table-title {
+  color: #009688; /* bleu-vert */
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Tableau */
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.tableau th, .tableau td {
+  border: 1px solid #00796b;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.tableau th {
+  background-color: #b2dfdb; /* ligne header */
+  color: #000;
+}
+
+.tableau tr:nth-child(even) {
+  background-color: #e0f2f1; /* lignes paires */
+}
+
+.tableau tr:nth-child(odd) {
+  background-color: #b2dfdb; /* lignes impaires */
+}
+
+/* Texte descriptif */
+#texte p {
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+
+
+
+ /* recette */ 
+
+ /* Texte descriptif à gauche */
+#texte p {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Titres des tableaux et figures */
+.table-title, .figure-title {
+  color: #009688; /* bleu-vert */
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Style tableau */
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.tableau th, .tableau td {
+  border: 1px solid #009688;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Background alterné */
+.tableau tbody tr:nth-child(odd) {
+  background-color: rgba(0, 150, 136, 0.1);
+}
+
+.tableau tbody tr:nth-child(even) {
+  background-color: rgba(0, 150, 136, 0.05);
+}
+
+/* Header tableau */
+.tableau th {
+  background-color: #009688;
+  color: white;
+}
+
+/* Canvas pour figures */
+canvas {
+  max-width: 100%;
+  height: 300px;
+  margin-bottom: 2rem;
+}
+
+
+
+/* dons */ 
+/* Déjà existant pour body, h1, h2, p, etc. */
+
+.tableau {
+  border-collapse: collapse;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.tableau th, .tableau td {
+  border: 1px solid #1e7e34;
+  padding: 8px;
+  text-align: center;
+}
+
+.tableau tr:nth-child(even) {
+  background-color: #d4edda;
+}
+
+.tableau tr:nth-child(odd) {
+  background-color: #cce5ff;
+}
+
+.titre-tableau {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #1e7e34;
+  font-weight: bold;
+}
