@@ -11,66 +11,62 @@
 
   <h1 class="text-center mb-5">Sommaire</h1>
 
- 
   <div id="sommaire"></div>
 
   <script>
-
     fetch('/api/sommaire')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('sommaire');
+      .then(reponse => reponse.json())
+      .then(contenu => {
+        const conteneurSommaire = document.getElementById('sommaire');
 
-        // Ajouter les chapitres
-        data.chapitres.forEach(chap => {
-          const chapDiv = document.createElement('div');
-          chapDiv.className = 'toc-item mt-3';
-          chapDiv.innerHTML = `<a href="${chap.lien || '#'}" class="chapter toc-title">${chap.titre}</a>
-                               <span class="toc-number">${chap.numero}</span>`;
-          container.appendChild(chapDiv);
+        contenu.chapitres.forEach(chapitre => {
+          const blocChapitre = document.createElement('div');
+          blocChapitre.className = 'toc-item mt-3';
+          blocChapitre.innerHTML = `<a href="${chapitre.lien || '#'}" class="chapter toc-title">${chapitre.titre}</a>
+                                    <span class="toc-number">${chapitre.numero}</span>`;
+          conteneurSommaire.appendChild(blocChapitre);
 
-          // Ajouter les sous-chapitres
-          chap.sousChapitres.forEach(sub => {
-            const subDiv = document.createElement('div');
-            subDiv.className = 'toc-item ms-4';
-            subDiv.innerHTML = `<a href="${sub.lien || '#'}" class="subchapter toc-title">${sub.titre}</a>
-                                <span class="toc-number">${sub.numero}</span>`;
-            container.appendChild(subDiv);
+          chapitre.sousChapitres.forEach(sousChapitre => {
+            const blocSousChapitre = document.createElement('div');
+            blocSousChapitre.className = 'toc-item ms-4';
+            blocSousChapitre.innerHTML = `<a href="${sousChapitre.lien || '#'}" class="subchapter toc-title">${sousChapitre.titre}</a>
+                                          <span class="toc-number">${sousChapitre.numero}</span>`;
+            conteneurSommaire.appendChild(blocSousChapitre);
           });
         });
 
-        // Ajouter les tableaux
-        const tableauxTitle = document.createElement('h2');
-        tableauxTitle.id = 'tableaux';
-        tableauxTitle.className = 'mt-5 chapter';
-        tableauxTitle.textContent = 'Liste des tableaux';
-        container.appendChild(tableauxTitle);
+        const titreTableaux = document.createElement('h2');
+        titreTableaux.id = 'tableaux';
+        titreTableaux.className = 'mt-5 chapter';
+        titreTableaux.textContent = 'Liste des tableaux';
+        conteneurSommaire.appendChild(titreTableaux);
 
-        data.tableaux.forEach(tab => {
-          const tabDiv = document.createElement('div');
-          tabDiv.className = 'toc-item';
-          tabDiv.innerHTML = `<a href="${tab.lien || '#'}" class="chapter toc-title">${tab.titre}</a>
-                              <span class="toc-number">${tab.numero}</span>`;
-          container.appendChild(tabDiv);
+        contenu.tableaux.forEach(tableau => {
+          const blocTableau = document.createElement('div');
+          blocTableau.className = 'toc-item';
+          blocTableau.innerHTML = `<a href="${tableau.lien || '#'}" class="chapter toc-title">${tableau.titre}</a>
+                                   <span class="toc-number">${tableau.numero}</span>`;
+          conteneurSommaire.appendChild(blocTableau);
         });
 
-        // Ajouter les figures
-        const figuresTitle = document.createElement('h2');
-        figuresTitle.id = 'figures';
-        figuresTitle.className = 'mt-5 chapter';
-        figuresTitle.textContent = 'Liste des figures';
-        container.appendChild(figuresTitle);
+        const titreFigures = document.createElement('h2');
+        titreFigures.id = 'figures';
+        titreFigures.className = 'mt-5 chapter';
+        titreFigures.textContent = 'Liste des figures';
+        conteneurSommaire.appendChild(titreFigures);
 
-        data.figures.forEach(fig => {
-          const figDiv = document.createElement('div');
-          figDiv.className = 'toc-item subchapter';
-          figDiv.innerHTML = `<a href="${fig.lien || '#'}" class="subchapter toc-title">${fig.titre}</a>
-                              <span class="toc-number">${fig.numero}</span>`;
-          container.appendChild(figDiv);
+        contenu.figures.forEach(figure => {
+          const blocFigure = document.createElement('div');
+          blocFigure.className = 'toc-item subchapter';
+          blocFigure.innerHTML = `<a href="${figure.lien || '#'}" class="subchapter toc-title">${figure.titre}</a>
+                                  <span class="toc-number">${figure.numero}</span>`;
+          conteneurSommaire.appendChild(blocFigure);
         });
       })
-      .catch(error => console.error('Erreur lors du chargement du sommaire :', error));
+      .catch(erreur => console.error('Erreur lors du chargement du sommaire :', erreur));
   </script>
-    <a href="../index.html">retour</a>
+
+  <a href="../index.html">Retour</a>
+
 </body>
 </html>

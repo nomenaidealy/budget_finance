@@ -1,66 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:3000/api/recettes") 
-    .then(response => response.json())
-    .then(data => {
-      const texteContainer = document.getElementById("texte");
-      const tableauxContainer = document.getElementById("tableaux");
+  fetch("http://localhost:3000/api/recettes")
+    .then(reponse => reponse.json())
+    .then(contenuRecettes => {
+      const conteneurTexte = document.getElementById("texte");
+      const conteneurTableaux = document.getElementById("tableaux");
 
+      const paragraphe = document.createElement("p");
+      paragraphe.textContent = contenuRecettes.texte;
+      paragraphe.style.whiteSpace = "pre-line";
+      conteneurTexte.appendChild(paragraphe);
 
-      const para = document.createElement("p");
-      para.textContent = data.texte;
-      para.style.whiteSpace = "pre-line";
-      texteContainer.appendChild(para);
-
-      
-      data.figures.forEach(fig => {
-        const titre = document.createElement("h5");
-        titre.className = "figure-title";
-        titre.textContent = fig.titre;
-        tableauxContainer.appendChild(titre);
+      contenuRecettes.figures.forEach(figure => {
+        const titreFigure = document.createElement("h5");
+        titreFigure.className = "titre-figure";
+        titreFigure.textContent = figure.titre;
+        conteneurTableaux.appendChild(titreFigure);
 
         const canvas = document.createElement("canvas");
-        canvas.id = fig.id; 
-        tableauxContainer.appendChild(canvas);
-
-        
+        canvas.id = figure.id;
+        conteneurTableaux.appendChild(canvas);
       });
 
-      
-      data.tableaux.forEach(tab => {
-        const titre = document.createElement("h4");
-        titre.className = "table-title";
-        titre.textContent = tab.titre;
-        tableauxContainer.appendChild(titre);
+      contenuRecettes.tableaux.forEach(tableauData => {
+        const titreTableau = document.createElement("h4");
+        titreTableau.className = "titre-tableau";
+        titreTableau.textContent = tableauData.titre;
+        conteneurTableaux.appendChild(titreTableau);
 
-        const table = document.createElement("table");
-        table.className = "tableau";
+        const tableau = document.createElement("table");
+        tableau.className = "tableau";
 
-       
-        const thead = document.createElement("thead");
-        const trHead = document.createElement("tr");
-        tab.header.forEach(h => {
+        const entete = document.createElement("thead");
+        const ligneEntete = document.createElement("tr");
+        tableauData.header.forEach(enteteCellule => {
           const th = document.createElement("th");
-          th.textContent = h;
-          trHead.appendChild(th);
+          th.textContent = enteteCellule;
+          ligneEntete.appendChild(th);
         });
-        thead.appendChild(trHead);
-        table.appendChild(thead);
+        entete.appendChild(ligneEntete);
+        tableau.appendChild(entete);
 
-     
-        const tbody = document.createElement("tbody");
-        tab.rows.forEach(row => {
-          const tr = document.createElement("tr");
-          row.forEach(cell => {
+        const corpsTableau = document.createElement("tbody");
+        tableauData.rows.forEach(ligneData => {
+          const ligne = document.createElement("tr");
+          ligneData.forEach(cellule => {
             const td = document.createElement("td");
-            td.textContent = cell;
-            tr.appendChild(td);
+            td.textContent = cellule;
+            ligne.appendChild(td);
           });
-          tbody.appendChild(tr);
+          corpsTableau.appendChild(ligne);
         });
-        table.appendChild(tbody);
+        tableau.appendChild(corpsTableau);
 
-        tableauxContainer.appendChild(table);
+        conteneurTableaux.appendChild(tableau);
       });
     })
-    .catch(error => console.error("Erreur lors du chargement de l'API :", error));
+    .catch(erreur => console.error("Erreur lors du chargement des recettes :", erreur));
 });

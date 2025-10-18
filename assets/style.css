@@ -1,8 +1,4 @@
-/* ======================================== */
-/* FOND ET TYPOGRAPHIE GLOBALE */
-/* ======================================== */
 
-/* Fond avec image et overlay semi-transparent */
 body {
   background: url('bg.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -13,7 +9,7 @@ body {
   padding: 2rem;
 }
 
-/* Overlay semi-transparent pour lisibilité */
+
 body::before {
   content: '';
   position: absolute;
@@ -23,9 +19,7 @@ body::before {
   z-index: -1;
 }
 
-/* ======================================== */
-/* LOGO */
-/* ======================================== */
+
 .logo-container {
   margin-bottom: 40px;
 }
@@ -39,9 +33,7 @@ body::before {
   transform: scale(1.1);
 }
 
-/* ======================================== */
-/* CADRE BDC / Texte BDC */
-/* ======================================== */
+
 .bdc-frame {
   width: 100%;
   height: 250px;
@@ -58,9 +50,7 @@ body::before {
   text-align: center;
 }
 
-/* ======================================== */
-/* TITRES SECONDAIRES */
-/* ======================================== */
+
 .titles-container h1 {
   font-size: 2rem;
   font-weight: 800;
@@ -71,9 +61,7 @@ body::before {
   font-weight: 400;
 }
 
-/* ======================================== */
-/* DB | Direction du budget (hover) */
-/* ======================================== */
+
 .db-direction h3 {
   cursor: pointer;
   transition: color 0.3s, transform 0.3s;
@@ -163,15 +151,15 @@ h1 {
 
 /* prespectives */
 
-/* Titres des tableaux */
+
 .table-title {
-  color: #009688; /* bleu-vert */
+  color: #009688; 
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
-/* Tableau */
+
 .tableau {
   width: 100%;
   border-collapse: collapse;
@@ -186,19 +174,19 @@ h1 {
 }
 
 .tableau th {
-  background-color: #b2dfdb; /* ligne header */
+  background-color: #b2dfdb; 
   color: #000;
 }
 
 .tableau tr:nth-child(even) {
-  background-color: #e0f2f1; /* lignes paires */
+  background-color: #e0f2f1; 
 }
 
 .tableau tr:nth-child(odd) {
-  background-color: #b2dfdb; /* lignes impaires */
+  background-color: #b2dfdb; 
 }
 
-/* Texte descriptif */
+
 #texte p {
   text-align: justify;
   margin-bottom: 1rem;
@@ -208,22 +196,22 @@ h1 {
 
  /* recette */ 
 
- /* Texte descriptif à gauche */
+ 
 #texte p {
   font-size: 1rem;
   line-height: 1.6;
   text-align: justify;
 }
 
-/* Titres des tableaux et figures */
+
 .table-title, .figure-title {
-  color: #009688; /* bleu-vert */
+  color: #009688;
   font-weight: bold;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-/* Style tableau */
+
 .tableau {
   width: 100%;
   border-collapse: collapse;
@@ -237,7 +225,7 @@ h1 {
   font-size: 0.95rem;
 }
 
-/* Background alterné */
+
 .tableau tbody tr:nth-child(odd) {
   background-color: rgba(0, 150, 136, 0.1);
 }
@@ -246,13 +234,13 @@ h1 {
   background-color: rgba(0, 150, 136, 0.05);
 }
 
-/* Header tableau */
+
 .tableau th {
   background-color: #009688;
   color: white;
 }
 
-/* Canvas pour figures */
+
 canvas {
   max-width: 100%;
   height: 300px;
@@ -262,7 +250,6 @@ canvas {
 
 
 /* dons */ 
-/* Déjà existant pour body, h1, h2, p, etc. */
 
 .tableau {
   border-collapse: collapse;

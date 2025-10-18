@@ -1,53 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/api/perspectives")
-    .then(response => response.json())
-    .then(data => {
-      // Texte descriptif
-      const texteContainer = document.getElementById("texte");
-      const paragraph = document.createElement("p");
-      paragraph.textContent = data.texte;
-      paragraph.style.whiteSpace = "pre-line";
-      texteContainer.appendChild(paragraph);
+    .then(reponse => reponse.json())
+    .then(contenuPerspectives => {
+      const conteneurTexte = document.getElementById("texte");
+      const paragraphe = document.createElement("p");
+      paragraphe.textContent = contenuPerspectives.texte;
+      paragraphe.style.whiteSpace = "pre-line";
+      conteneurTexte.appendChild(paragraphe);
 
-      // Tableaux
-      const tableauxContainer = document.getElementById("tableaux");
-      data.tableaux.forEach(tab => {
-        // Titre
-        const titre = document.createElement("h4");
-        titre.className = "table-title";
-        titre.textContent = tab.titre;
-        tableauxContainer.appendChild(titre);
+      const conteneurTableaux = document.getElementById("tableaux");
+      contenuPerspectives.tableaux.forEach(tableauData => {
+        const titreTableau = document.createElement("h4");
+        titreTableau.className = "titre-tableau";
+        titreTableau.textContent = tableauData.titre;
+        conteneurTableaux.appendChild(titreTableau);
 
-        // Tableau
-        const table = document.createElement("table");
-        table.className = "tableau";
+        const tableau = document.createElement("table");
+        tableau.className = "tableau";
 
-        // Header
-        const thead = document.createElement("thead");
-        const trHead = document.createElement("tr");
-        tab.header.forEach(h => {
+        const entete = document.createElement("thead");
+        const ligneEntete = document.createElement("tr");
+        tableauData.header.forEach(enteteCellule => {
           const th = document.createElement("th");
-          th.textContent = h;
-          trHead.appendChild(th);
+          th.textContent = enteteCellule;
+          ligneEntete.appendChild(th);
         });
-        thead.appendChild(trHead);
-        table.appendChild(thead);
+        entete.appendChild(ligneEntete);
+        tableau.appendChild(entete);
 
-        // Body
-        const tbody = document.createElement("tbody");
-        tab.rows.forEach(row => {
-          const tr = document.createElement("tr");
-          row.forEach(cell => {
+        const corpsTableau = document.createElement("tbody");
+        tableauData.rows.forEach(ligneData => {
+          const ligne = document.createElement("tr");
+          ligneData.forEach(cellule => {
             const td = document.createElement("td");
-            td.textContent = cell;
-            tr.appendChild(td);
+            td.textContent = cellule;
+            ligne.appendChild(td);
           });
-          tbody.appendChild(tr);
+          corpsTableau.appendChild(ligne);
         });
-        table.appendChild(tbody);
+        tableau.appendChild(corpsTableau);
 
-        tableauxContainer.appendChild(table);
+        conteneurTableaux.appendChild(tableau);
       });
     })
-    .catch(error => console.error("Erreur lors du chargement de l'API :", error));
+    .catch(erreur => console.error("Erreur lors du chargement des perspectives :", erreur));
 });
